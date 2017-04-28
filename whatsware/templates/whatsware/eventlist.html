@@ -1,0 +1,9 @@
+{% extends './base.html' %}
+{% block content %}
+    <table>
+    <th><td>Events</td></th>
+    {% for sale in sales %}
+    <tr><td>{{ sale.title }}</td></tr>
+    {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WhatsWare</title>
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+{% include './nav.html' %}
+<div id="map">
+A MAP IS IN HERE
+</div>
+
+<script>
+      var markerlist = [];
+      var openInfoWindow;
+
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 11,
+          center: {lat: 39.683723, lng: -75.749657},
+          scrollwheel: false,
+        });
+
+        /*var houseIcon = {
+          url: "{% static 'images/neighborhood4.svg' %}",
+          origin: new google.maps.Point(4, 4),
+        }*/
+        {% for sale in sales %}
+
+            var dateString = "{{ sale.day }}"+" "+"{{ sale.start }}";
+            console.log(dateString);
+
+            var markerobj = {
+                title: "{{ sale.title }}",
+                eventType: "{{ sale.eventType }}",
+                day: "{{ sale.day }}",
+                start: "{{ sale.start }}",
+                end: "{{sale.end}}",
+                location: "{{ sale.street }}<br/>"+ " "+"{{ sale.city }}"+", "+"{{ sale.state }}",
+                description: "{{ sale.description }}",
+                pos: { "lat":{{ sale.lat }},"lng":{{ sale.lon }}}
+            }
+            /*if (markerobj.eventType=='SF') {
+                markerobj.mapicon=houseIcon;
+            }*/
+
+            console.log(markerobj);
+            markerlist.push(markerobj);
+        {% endfor %}
+
+
+        markerlist.forEach(function(m){
+            var pos = m.pos;
+            var marker = new google.maps.Marker({
+                  position: pos,
+                  map: map,
+                  //icon: m.mapicon
+                });
+            var contentString = "<h3>"+m.title+"</h3><h4>"+m.day+" "+m.start+" to "+
+                                m.end+"</h4>Location:<br/>"+m.location+"<br/><br/>Details:<br/>"+
+                                m.description;
+            m.infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                m.infowindow.open(map, marker);
+                if (openInfoWindow) openInfoWindow.close();
+                openInfoWindow = m.infowindow;
+            });
+        });
+
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmFI2_ip0J_wvNSJyv7lTJIl02NvYK9gw&callback=initMap">
+    </script>
+<div class="container">
+      <!--<a href="{% url 'eventform' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Add your event!</a>
+<div class="row"> -->
+
+        {% block content %}
+        {% endblock %}
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+</div>
+</body>
+</html>

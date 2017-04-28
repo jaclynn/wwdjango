@@ -1,0 +1,19 @@
+.navbar-inverse .navbar-header a.navbar-brand {
+    color: #FCA205 !important;
+    font-weight: bold !important;
+}
+h1, a {
+    color: #FCA205;
+}
+#map {
+    height: 800px;
+    width: 100%;
+    background-color: lightblue;
+}
+th.prev, th.next {
+    color: #FCA205;
+}
+
+#map {
+    padding-top: 50px;
+}

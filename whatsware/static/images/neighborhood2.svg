@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="Layer_1"
+	 xmlns="http://www.w3.org/2000/svg"
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px"
+	 viewBox="0 0 50 50"
+	 enable-background="new 0 0 50 50"
+	 xml:space="preserve">
+<g>
+	<circle fill="#1CC61C" cx="50" cy="50" r="15"/>
+	<g>
+		<g>
+			<path fill="#3E6460" d="M42.7,49.6l1.7,0.9v2.4L42.7,52V49.6z M47.8,51.9v-2.3l2-1.1v2.5L47.8,51.9z"/>
+			<polygon fill="#BC3C25" points="45.4,47.9 39.1,44.7 42.3,41.1 48.5,44.3 			"/>
+			<polygon fill="#791A0F" points="48.5,44.3 42.3,41.1 45.4,41.5 51.6,44.7 			"/>
+			<polygon fill="#E45D4D" points="39.1,44.7 45.4,47.9 45.4,55.3 42.7,53.9 42.7,52 44.4,52.9 44.4,50.5 42.7,49.6 40.6,48.6 
+				40.6,52.8 39.1,52 			"/>
+			<path fill="#CE2032" d="M45.4,47.9l3.1-3.6l3.1,0.4V52l-6.2,3.3V47.9z M47.8,51.9l2-1v-2.5l-2,1.1V51.9z"/>
+			<polygon fill="#EDBC4E" points="40.6,52.8 40.6,48.6 42.7,49.6 42.7,52 42.7,53.9 			"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<polygon fill="#87C4BB" points="48.2,47.6 54.4,50.8 54.4,58.2 51.7,56.8 51.7,54.9 53.5,55.8 53.5,53.4 51.7,52.5 49.6,51.5 
+				49.6,55.7 48.2,54.9 			"/>
+			<path fill="#7AA5B8" d="M54.4,50.8l3.1-3.6l3.1,0.4v7.3l-6.2,3.2V50.8z M56.8,54.7l2-1v-2.5l-2,1.1V54.7z"/>
+			<polygon fill="#E7537A" points="49.6,55.7 49.6,51.5 51.7,52.5 51.7,54.9 51.7,56.8 			"/>
+			<path fill="#3E6460" d="M51.7,52.5l1.7,0.9v2.4l-1.7-0.9V52.5z M56.8,54.7v-2.3l2-1.1v2.5L56.8,54.7z"/>
+			<polygon fill="#ECCD3A" points="54.4,50.8 48.2,47.6 51.3,44 57.5,47.2 			"/>
+			<polygon fill="#E6A333" points="57.5,47.2 51.3,44 54.4,44.3 60.7,47.6 			"/>
+		</g>
+	</g>
+</g>
+</svg>

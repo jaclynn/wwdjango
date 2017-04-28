@@ -1,0 +1,29 @@
+{% extends './base.html' %}
+{% block content %}
+
+<div id="map">
+A MAP IS IN HERE
+</div>
+
+<script>
+      function initMap() {
+        var markerlist = [];
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: 39.683723, lng: -75.749657}
+        });
+        {% for marker in markers %}
+            var pos = {lat: {{marker.lat}}, lng: {{marker.lon}} };
+            var marker = new google.maps.Marker({
+                  position: pos,
+                  map: map
+                });
+            markerlist.push(marker);
+        {% endfor %}
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmFI2_ip0J_wvNSJyv7lTJIl02NvYK9gw&callback=initMap">
+    </script>
+{% endblock %}
