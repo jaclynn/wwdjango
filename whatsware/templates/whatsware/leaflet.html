@@ -3,7 +3,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Leaflet Example</title>
+    <title>Whatsware</title>
+    <!-- Facebook stuff -->
+    <meta property="og:image" content="{% static 'images/wwimage.jpg' %} />
+    <meta property="og:description" content="Whatsware is a site for area residents to share events, particularly yard sales." />
+    <meta property="og:url"content="http://www.whatsware.com/" />
+    <meta property="og:title" content="Whatsware Yard Sale Map" />
+    <!-- end -->
+    <!-- Leaflet/Map stuff -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
    integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
    crossorigin=""/>
@@ -11,10 +18,40 @@
    integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
    crossorigin=""></script>
     <style>
-        #mapid { height: 800px; }
+        #mapid { height: 800px;
+                 width: 100%;
+                 margin-top: 50px;}
     </style>
+    <!-- end -->
+    <!-- Bootstrap stuff -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- end -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><span id="orange">Whats</span><span id="blue">Ware</span></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <!-- for later
+          <ul class="nav navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul> -->
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 <div id="mapid"></div>
 <script>
     var locationIcon = L.icon({
@@ -27,10 +64,11 @@
     var homeIcon = L.icon({iconUrl: "{% static 'images/home.png' %}",iconSize:[31,39],iconAnchor:[5,35],popupAnchor:[10,-40]});
     var neighborhoodIcon = L.icon({iconUrl: "{% static 'images/neighborhood.png' %}",iconSize:[34,35],iconAnchor:[10,35],popupAnchor:[10,-40]});
     var churchIcon = L.icon({iconUrl: "{% static 'images/church.png' %}",iconSize:[33,49],iconAnchor:[15,49],popupAnchor:[5,-55]});
-    var mymap = L.map('mapid').setView([39.683723,-75.749657], 13);
+    var mymap = L.map('mapid').setView([39.683723,-75.749657], 11);
     L.tileLayer('https://api.mapbox.com/styles/v1/jaclynn/cj27ignd200022sqjqlpotrb6/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamFjbHlubiIsImEiOiJ6clBsSVhrIn0.XG7freu95MzsVdXtF-Bc-g', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        maxZoom: 12,
+        minZoom: 5,
+        maxZoom: 18,
         detectRetina:true,
         id: 'your.mapbox.project.id',
         accessToken: 'your.mapbox.public.access.token'
