@@ -46,6 +46,9 @@ def eventform(request):
             if coords:
                 post.lat=coords[0]['geometry']['location']['lat']
                 post.lon=coords[0]['geometry']['location']['lng']
+            post.geojsonstring='''
+            {"type": "Feature","geometry": {"type": "Point","coordinates": ['''+str(post.lon)+''', '''+str(post.lat)+''']},"properties": {"name": "Dinagat Islands"}}'''
+            print("geojson is ", post.geojsonstring)
             post.author = request.user
             post.save()
             sales = Event.objects.all()
@@ -73,6 +76,23 @@ def map(request):
     sales = Event.objects.all()
     context = {'markers': sales}
     return render(request,'whatsware/map.html')
+
+#remove when done testing
+def logo(request):
+    sales = Event.objects.all()
+    context = {'markers':sales}
+    return render(request,'./static/images/neighborhood.svg',context)
+
+#remove when done testing
+def mapbox(request):
+    sales = Event.objects.all()
+    context = {'markers': sales}
+    return render(request,'whatsware/mapbox.html',context)
+
+def leaflet(request):
+    sales = Event.objects.all()
+    context = {'sales': sales}
+    return render(request,'whatsware/leaflet.html',context)
 
 @login_required
 def home(request):

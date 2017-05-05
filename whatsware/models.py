@@ -7,8 +7,10 @@ gmaps = googlemaps.Client(key=settings.GOOGLEMAPSAPI)
 # Create your models here.
 
 EVENTTYPE_CHOICES = (('SF','Single Family'),
-                    ('MF','Multi Fmaily'),
-                    ('CE','Church Event'))
+                     ('MF','Multi Family'),
+                     ('CE','Church Event'),
+                     ('SE','School Event'),
+                     ('FM','Farm Market'))
 STATE_CHOICES = (('DE','Delaware'),
                  ('MD','Maryland'),
                  ('PA','Pennsylvania'))
@@ -28,6 +30,7 @@ class Event(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     lat = models.FloatField()
     lon = models.FloatField()
+    geojsonstring = models.TextField(default='{}')
 
     def __str__(self):
         return self.title

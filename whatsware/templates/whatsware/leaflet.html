@@ -1,0 +1,67 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaflet Example</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+   integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+   crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+   integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+   crossorigin=""></script>
+    <style>
+        #mapid { height: 800px; }
+    </style>
+</head>
+<body>
+<div id="mapid"></div>
+<script>
+    var locationIcon = L.icon({
+      iconUrl:'location_marker_icon.png',
+      iconSize: [98, 114],
+      iconAnchor: [49, 114]
+    });
+    var farmIcon = L.icon({iconUrl: "{% static 'images/farm.png' %}",iconSize:[35,35],iconAnchor:[10,35],popupAnchor:[10,-40]});
+    var schoolIcon = L.icon({iconUrl: "{% static 'images/school.png' %}",iconSize:[37,35],iconAnchor:[18,35],popupAnchor:[0,-40]});
+    var homeIcon = L.icon({iconUrl: "{% static 'images/home.png' %}",iconSize:[31,39],iconAnchor:[5,35],popupAnchor:[10,-40]});
+    var neighborhoodIcon = L.icon({iconUrl: "{% static 'images/neighborhood.png' %}",iconSize:[34,35],iconAnchor:[10,35],popupAnchor:[10,-40]});
+    var churchIcon = L.icon({iconUrl: "{% static 'images/church.png' %}",iconSize:[33,49],iconAnchor:[15,49],popupAnchor:[5,-55]});
+    var mymap = L.map('mapid').setView([39.683723,-75.749657], 13);
+    L.tileLayer('https://api.mapbox.com/styles/v1/jaclynn/cj27ignd200022sqjqlpotrb6/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamFjbHlubiIsImEiOiJ6clBsSVhrIn0.XG7freu95MzsVdXtF-Bc-g', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        maxZoom: 12,
+        detectRetina:true,
+        id: 'your.mapbox.project.id',
+        accessToken: 'your.mapbox.public.access.token'
+    }).addTo(mymap);
+    {% for sale in sales %}
+        var eventType = "{{ sale.eventType }}";
+        var marker;
+        switch(eventType) {
+            case 'SF':
+                marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: homeIcon}).addTo(mymap);
+                break;
+            case 'MF':
+                marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: neighborhoodIcon}).addTo(mymap);
+                break;
+            case 'CE':
+                marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: churchIcon}).addTo(mymap);
+                break;
+            case 'SE':
+                marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: schoolIcon}).addTo(mymap);
+                break;
+            case 'FM':
+                marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: farmIcon}).addTo(mymap);
+                break;
+            default:
+                break;
+        }
+        var contentString = "<h3>{{ sale.title }}</h3><h4>{{sale.day}} {{sale.start}} to {{sale.end}}</h4><h4>Location</h4>{{ sale.street }}<br/>{{ sale.city }}, {{ sale.state }}<h4>Details</h4>{{sale.description}}";
+        marker.bindPopup(contentString);
+    {% endfor %}
+
+
+</script>
+</body>
+</html>

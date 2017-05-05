@@ -23,7 +23,7 @@ LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
 
 urlpatterns = [
-    url(r'^$', whatsware_views.welcome, name='wwwelcome'),
+    url(r'^$', whatsware_views.leaflet, name='leaflet'),
     url(r'^ww/', include('whatsware.urls')),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
@@ -31,4 +31,7 @@ urlpatterns = [
     url(r'^settings/$', whatsware_views.settings, name='settings'),
     url(r'^settings/password/$', whatsware_views.password, name='password'),
     url(r'^admin/', admin.site.urls),
+    #remove when done testing
+    url(r'^mapbox/',whatsware_views.mapbox, name="mapbox"),
+    url(r'^leaflet/',whatsware_views.leaflet, name="leaflet")
 ]
