@@ -94,6 +94,21 @@ def leaflet(request):
     context = {'sales': sales}
     return render(request,'whatsware/leaflet.html',context)
 
+def friday(request):
+    sales = Event.objects.filter(day__week_day=6)
+    context = {'sales': sales}
+    return render(request,'whatsware/leaflet.html',context)
+
+def saturday(request):
+    sales = Event.objects.filter(day__week_day=7)
+    context = {'sales': sales}
+    return render(request,'whatsware/leaflet.html',context)
+
+def sunday(request):
+    sales = Event.objects.filter(day__week_day=1)
+    context = {'sales': sales}
+    return render(request,'whatsware/leaflet.html',context)
+
 @login_required
 def home(request):
     sales = Event.objects.all()
