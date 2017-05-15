@@ -8,6 +8,7 @@ gmaps = googlemaps.Client(key=settings.GOOGLEMAPSAPI)
 
 EVENTTYPE_CHOICES = (('SF','Single Family'),
                      ('MF','Multi Family'),
+                     ('ES','Estate Sale'),
                      ('CE','Church Event'),
                      ('SE','School Event'),
                      ('FM','Farm Market'))

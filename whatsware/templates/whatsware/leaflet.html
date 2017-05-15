@@ -72,6 +72,7 @@
     var homeIcon = L.icon({iconUrl: "{% static 'images/home.png' %}",iconSize:[31,39],iconAnchor:[5,35],popupAnchor:[10,-40]});
     var neighborhoodIcon = L.icon({iconUrl: "{% static 'images/neighborhood.png' %}",iconSize:[34,35],iconAnchor:[10,35],popupAnchor:[10,-40]});
     var churchIcon = L.icon({iconUrl: "{% static 'images/church.png' %}",iconSize:[33,49],iconAnchor:[15,49],popupAnchor:[5,-55]});
+    var estateIcon = L.icon({iconUrl: "{% static 'images/estate.png' %}",iconSize:[31,32],iconAnchor:[11,28],popupAnchor:[10,-37]});
     var mymap = L.map('mapid').setView([39.683723,-75.749657], 11);
     L.tileLayer('https://api.mapbox.com/styles/v1/jaclynn/cj27ignd200022sqjqlpotrb6/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamFjbHlubiIsImEiOiJ6clBsSVhrIn0.XG7freu95MzsVdXtF-Bc-g', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -90,6 +91,9 @@
                 break;
             case 'MF':
                 marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: neighborhoodIcon}).addTo(mymap);
+                break;
+            case 'ES':
+                marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: estateIcon}).addTo(mymap);
                 break;
             case 'CE':
                 marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: churchIcon}).addTo(mymap);
