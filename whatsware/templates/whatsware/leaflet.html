@@ -44,7 +44,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><span id="orange">Whats</span><span id="blue">Ware</span></a>
+          <a class="navbar-brand" href="{% url 'leaflet' %}"><span id="orange">Whats</span><span id="blue">Ware</span></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -73,6 +73,7 @@
     var neighborhoodIcon = L.icon({iconUrl: "{% static 'images/neighborhood.png' %}",iconSize:[34,35],iconAnchor:[10,35],popupAnchor:[10,-40]});
     var churchIcon = L.icon({iconUrl: "{% static 'images/church.png' %}",iconSize:[33,49],iconAnchor:[15,49],popupAnchor:[5,-55]});
     var estateIcon = L.icon({iconUrl: "{% static 'images/estate.png' %}",iconSize:[31,32],iconAnchor:[11,28],popupAnchor:[10,-37]});
+    var foodIcon = L.icon({iconUrl: "{% static 'images/picnic.png' %}",iconSize:[31,29],iconAnchor:[15,22],popupAnchor:[10,-35]});
     var mymap = L.map('mapid').setView([39.683723,-75.749657], 11);
     L.tileLayer('https://api.mapbox.com/styles/v1/jaclynn/cj27ignd200022sqjqlpotrb6/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamFjbHlubiIsImEiOiJ6clBsSVhrIn0.XG7freu95MzsVdXtF-Bc-g', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -103,6 +104,9 @@
                 break;
             case 'FM':
                 marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: farmIcon}).addTo(mymap);
+                break;
+            case 'FB':
+                marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: foodIcon}).addTo(mymap);
                 break;
             default:
                 break;
