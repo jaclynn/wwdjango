@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'leaflet',views.leaflet, name='leaflet'),
     url(r'friday',views.friday, name='friday'),
     url(r'saturday',views.saturday, name='saturday'),
-    url(r'sunday',views.sunday, name='sunday')
+    url(r'sunday',views.sunday, name='sunday'),
+    url(r'filter/(?P<weekday>\d+)/$',views.filter, name='filter')
 ]

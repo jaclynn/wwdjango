@@ -109,6 +109,15 @@ def sunday(request):
     context = {'sales': sales}
     return render(request,'whatsware/leaflet.html',context)
 
+#def post_detail(request, pk):
+#    post = get_object_or_404(Post, pk=pk)
+#    return render(request, 'blog/post_detail.html', {'post': post})
+
+def filter(request, weekday):
+    sales = Event.objects.filter(day__week_day=weekday)
+    context = {'sales': sales}
+    return render(request,'whatsware/leaflet.html',context)
+
 @login_required
 def home(request):
     sales = Event.objects.all()

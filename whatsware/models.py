@@ -12,7 +12,8 @@ EVENTTYPE_CHOICES = (('SF','Single Family'),
                      ('CE','Church Event'),
                      ('SE','School Event'),
                      ('FM','Farm Market'),
-                     ('FB','Food or Beverage Event'))
+                     ('FB','Food or Beverage Event'),
+                     ('HE', 'Holiday Event'))
 STATE_CHOICES = (('DE','Delaware'),
                  ('MD','Maryland'),
                  ('PA','Pennsylvania'))
