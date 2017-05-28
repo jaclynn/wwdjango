@@ -6,12 +6,13 @@
     <title>Whatsware</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <!-- Facebook stuff -->
-    <meta property="og:image" content="http://www.whatsware.com/static/images/wwimage.jpg" />
+    <meta property="og:image" content="http://www.whatsware.com/fbimage/wwimage.jpg" />
     <meta property="og:description" content="Whatsware is a site for area residents to share events, particularly yard sales." />
     <meta property="og:url"content="http://www.whatsware.com/" />
     <meta property="og:title" content="Whatsware Yard Sale Map" />
     <meta property="fb:app-id" content="422341344788588" />
     <!-- end -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Leaflet/Map stuff -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
    integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
@@ -48,7 +49,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="{% url 'leaflet' %}">All</a></li>
+            <li class="active"><a href="{% url 'leaflet' %}">All</a></li>
             <li><a href="{% url 'friday' %}">Friday</a></li>
             <li><a href="{% url 'saturday' %}">Saturday</a></li>
             <li><a href="{% url 'sunday' %}">Sunday</a></li>
@@ -61,6 +62,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"  id="mapid"></div>
     </div>
 </div>
+
 <script>
     var locationIcon = L.icon({
       iconUrl:'location_marker_icon.png',
@@ -75,6 +77,7 @@
     var estateIcon = L.icon({iconUrl: "{% static 'images/estate.png' %}",iconSize:[31,32],iconAnchor:[11,28],popupAnchor:[10,-37]});
     var foodIcon = L.icon({iconUrl: "{% static 'images/picnic.png' %}",iconSize:[31,29],iconAnchor:[15,22],popupAnchor:[10,-35]});
     var flagIcon = L.icon({iconUrl: "{% static 'images/usaflag.png' %}",iconSize:[21,32],iconAnchor:[10,28],popupAnchor:[10,-35]});
+    var craftIcon =L.icon({iconUrl: "{% static 'images/craftshow23x32.png' %}",iconSize:[23,32],iconAnchor:[10,28],popupAnchor:[10,-35]});
     var mymap = L.map('mapid').setView([39.683723,-75.749657], 11);
     L.tileLayer('https://api.mapbox.com/styles/v1/jaclynn/cj27ignd200022sqjqlpotrb6/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamFjbHlubiIsImEiOiJ6clBsSVhrIn0.XG7freu95MzsVdXtF-Bc-g', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -112,13 +115,15 @@
             case 'HE':
                 marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: flagIcon}).addTo(mymap);
                 break;
+            case 'CS':
+                marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: craftIcon}).addTo(mymap);
+                break;
             default:
                 break;
         }
         var contentString = "<h3>{{ sale.title }}</h3><h4>{{sale.day}} {{sale.start}} to {{sale.end}}</h4><h4>Location</h4>{{ sale.street }}<br/>{{ sale.city }}, {{ sale.state }}<h4>Details</h4>{{sale.description}}";
         marker.bindPopup(contentString);
     {% endfor %}
-
 
 </script>
 </body>
