@@ -78,6 +78,8 @@
     var foodIcon = L.icon({iconUrl: "{% static 'images/picnic.png' %}",iconSize:[31,29],iconAnchor:[15,22],popupAnchor:[10,-35]});
     var flagIcon = L.icon({iconUrl: "{% static 'images/usaflag.png' %}",iconSize:[21,32],iconAnchor:[10,28],popupAnchor:[10,-35]});
     var craftIcon =L.icon({iconUrl: "{% static 'images/craftshow23x32.png' %}",iconSize:[23,32],iconAnchor:[10,28],popupAnchor:[10,-35]});
+    var festivalIcon = L.icon({iconUrl: "{% static 'images/balloons.png' %}",iconSize:[32,32],iconAnchor:[11,28],popupAnchor:[10,-37]});
+
     var mymap = L.map('mapid').setView([39.683723,-75.749657], 11);
     L.tileLayer('https://api.mapbox.com/styles/v1/jaclynn/cj27ignd200022sqjqlpotrb6/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamFjbHlubiIsImEiOiJ6clBsSVhrIn0.XG7freu95MzsVdXtF-Bc-g', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -117,6 +119,9 @@
                 break;
             case 'CS':
                 marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: craftIcon}).addTo(mymap);
+                break;
+            case 'FE':
+                marker = L.marker([{{ sale.lat }},{{ sale.lon }}], {icon: festivalIcon}).addTo(mymap);
                 break;
             default:
                 break;

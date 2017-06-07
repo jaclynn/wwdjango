@@ -14,7 +14,8 @@ EVENTTYPE_CHOICES = (('SF','Single Family'),
                      ('FM','Farm Market'),
                      ('FB','Food or Beverage Event'),
                      ('HE', 'Holiday Event'),
-                     ('CS', 'Craft Show or Flea Market'))
+                     ('CS', 'Craft Show or Flea Market'),
+                     ('FE', 'Festival or Fair'))
 STATE_CHOICES = (('DE','Delaware'),
                  ('MD','Maryland'),
                  ('PA','Pennsylvania'))
